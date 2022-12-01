@@ -18,3 +18,27 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+.country-item{
+  display: flex;
+  align-items: center;
+ 
+}
+
+.country-img{
+  margin-right: 20px;
+}
+
+.country-name{
+  font-weight: 700;
+  font-size: 30px;
+}
+.info-text{
+  font-weight: 600;
+  font-size: 20px;
+
+}
+.value{
+font-size: 20px;
+  font-weight: 400;
+}
