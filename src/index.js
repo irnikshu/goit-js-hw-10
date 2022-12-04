@@ -108,7 +108,8 @@ function onInput(e) {
   }
   country.fetchCountries(formValue)
     .then(countries => {
-      if (countries.length === 1) {
+     
+       if (countries.length === 1) {
         clearRender();
         renderCountryList(countries);
         renderCountryInfo(countries);
@@ -122,6 +123,7 @@ function onInput(e) {
           
        
       }
+ 
     })
     .catch(catchError);
 }
