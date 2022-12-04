@@ -67,7 +67,8 @@
 import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 import './css/styles.css';
-import { fetchCountries } from './fetchCountries';
+// import { fetchCountries } from './fetchCountries';
+import country from './fetchCountries';
 
 const DEBOUNCE_DELAY = 300;
 
@@ -82,6 +83,22 @@ let formValue = '';
 refs.searchQueary.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 
+
+
+
+// function onInput(e) {
+//   e.preventDefault();
+//   const name = e.target.value.trim();
+//   if (name === '') {
+//     clearInput();
+//     return;
+//   }
+//   country.fetchCountries(name)
+//     .then(aboutCountry)
+//     .catch(catchError)
+
+// };
+
 function onInput(e) {
   e.preventDefault();
   formValue = refs.searchQueary.value.trim();
@@ -89,8 +106,7 @@ function onInput(e) {
     clearRender();
     return;
   }
-
-  fetchCountries(formValue)
+  country.fetchCountries(formValue)
     .then(countries => {
       if (countries.length === 1) {
         clearRender();
@@ -101,8 +117,8 @@ function onInput(e) {
         renderCountryList(countries);
       } else if (countries.length > 10) {
         clearRender();
-          Notiflix.info(
-              'Too many mathces found. Please enter a more spesific name');
+        Notiflix.Notify.info(
+          'Too many mathces found. Please enter a more spesific name');
           
        
       }
@@ -110,7 +126,26 @@ function onInput(e) {
     .catch(catchError);
 }
 
+// function aboutCountry(countries) {
+
+//   if (countries.length === 1) {
+//     clearRender();
+//     renderCountryList(countries);
+//     renderCountryInfo(countries);
+//   } else if (countries.length > 1 && countries.length <= 10) {
+//     clearRender();
+//     renderCountryList(countries);
+//   } else if (countries.length > 10) {
+//     clearRender();
+//     Notiflix.Notify.info(
+//       'Too many mathces found. Please enter a more spesific name');
+          
+//   }
+// };
+
+
 function renderCountryList(countries) {
+
   const markup = countries
     .map(country => {
       return `<li class="country-item">
@@ -141,5 +176,5 @@ function clearRender() {
 
 function catchError() {
   clearRender();
-   Notiflix.failure('Oops, there is no country with that name');
-}
+   Notiflix.Notify.failure('Oops, there is no country with that name');
+};
